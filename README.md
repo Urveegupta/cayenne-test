@@ -11,4 +11,5 @@ b. commands -
    3. mvn cayenne-modeler:run (opens the modeler to refer to any changes)
    4. mvn cayenne:cgen (generates Java Classes for domain entities)
 
-the Java classes are generated in org/apache/cayenne/tutorial/persistent/auto folder in the project.
+the Datamap once the database loads is generated at src/main/resources/cayenne folder in the project.
+the Java classes are generated in src/main/java/org/apache/cayenne/tutorial/persistent/auto folder in the project.

@@ -1,10 +1,10 @@
 _Authors- Urvee Gupta, Aarushi_
-## This Java Project uses cayenne framework to read Database entities and generate corresponding Java Classes
+# This Java Project uses cayenne framework to read Database entities and generate corresponding Java Classes
 
-# The Project uses `Maven` as the build Tool
+## The Project uses `Maven` as the build Tool
 
 Steps to run-
-a. change `your-username-here` and `your-password-here` columns in pom.xml file to your credentials.
+a. change `your-username-here` and `your-password-here` columns in `pom.xml` file to your credentials.
 b. commands -
    1. mvn compile
    2. mvn cayenne:cdbimport (Load Database)

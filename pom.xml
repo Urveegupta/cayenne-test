@@ -25,8 +25,8 @@
                     <dataSource>
                         <driver>com.mysql.jdbc.Driver</driver>
                         <url>jdbc:mysql://127.0.0.1:3306/employees</url>
-                        <username>your-username-here</username>
-                        <password>your-password-here</password>
+                        <username>root</username>
+                        <password>habitat2001</password>
                     </dataSource>
                     <cayenneProject>${project.basedir}/src/main/resources/cayenne/cayenne-project.xml</cayenneProject>
                     <map>${project.basedir}/src/main/resources/cayenne/datamap.map.xml</map>
@@ -45,13 +45,6 @@
                     <modelFile>${project.basedir}/src/main/resources/cayenne/cayenne-project.xml</modelFile>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
@@ -66,6 +59,11 @@
             <groupId>org.apache.cayenne</groupId>
             <artifactId>cayenne-server</artifactId>
             <version>${cayenne.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
         </dependency>
     </dependencies>
 </project>

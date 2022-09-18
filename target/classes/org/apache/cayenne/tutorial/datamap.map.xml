@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/10/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/modelMap https://cayenne.apache.org/schema/10/modelMap.xsd"
+	 project-version="10">
+	<property name="defaultPackage" value="org.apache.cayenne.tutorial.persistent"/>
+	<property name="defaultCatalog" value="employees"/>
+	<db-entity name="current_dept_emp" catalog="employees">
+		<db-attribute name="dept_no" type="CHAR" isMandatory="true" length="4"/>
+		<db-attribute name="emp_no" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" length="10"/>
+		<db-attribute name="to_date" type="DATE" length="10"/>
+	</db-entity>
+	<db-entity name="departments" catalog="employees">
+		<db-attribute name="dept_name" type="VARCHAR" isMandatory="true" length="40"/>
+		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
+	</db-entity>
+	<db-entity name="dept_emp" catalog="employees">
+		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
+		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" isMandatory="true" length="10"/>
+		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="dept_emp_latest_date" catalog="employees">
+		<db-attribute name="emp_no" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" length="10"/>
+		<db-attribute name="to_date" type="DATE" length="10"/>
+	</db-entity>
+	<db-entity name="dept_manager" catalog="employees">
+		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
+		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" isMandatory="true" length="10"/>
+		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="employees" catalog="employees">
+		<db-attribute name="birth_date" type="DATE" isMandatory="true" length="10"/>
+		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="first_name" type="VARCHAR" isMandatory="true" length="14"/>
+		<db-attribute name="gender" type="CHAR" isMandatory="true" length="1"/>
+		<db-attribute name="hire_date" type="DATE" isMandatory="true" length="10"/>
+		<db-attribute name="last_name" type="VARCHAR" isMandatory="true" length="16"/>
+	</db-entity>
+	<db-entity name="salaries" catalog="employees">
+		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="salary" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	</db-entity>
+	<db-entity name="titles" catalog="employees">
+		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="from_date" type="DATE" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="title" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
+		<db-attribute name="to_date" type="DATE" length="10"/>
+	</db-entity>
+	<obj-entity name="CurrentDeptEmp" className="org.apache.cayenne.tutorial.persistent.CurrentDeptEmp" dbEntityName="current_dept_emp">
+		<obj-attribute name="deptNo" type="java.lang.String" db-attribute-path="dept_no"/>
+		<obj-attribute name="empNo" type="int" db-attribute-path="emp_no"/>
+		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<obj-entity name="Departments" className="org.apache.cayenne.tutorial.persistent.Departments" dbEntityName="departments">
+		<obj-attribute name="deptName" type="java.lang.String" db-attribute-path="dept_name"/>
+	</obj-entity>
+	<obj-entity name="DeptEmp" className="org.apache.cayenne.tutorial.persistent.DeptEmp" dbEntityName="dept_emp">
+		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<obj-entity name="DeptEmpLatestDate" className="org.apache.cayenne.tutorial.persistent.DeptEmpLatestDate" dbEntityName="dept_emp_latest_date">
+		<obj-attribute name="empNo" type="int" db-attribute-path="emp_no"/>
+		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<obj-entity name="DeptManager" className="org.apache.cayenne.tutorial.persistent.DeptManager" dbEntityName="dept_manager">
+		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<obj-entity name="Employees" className="org.apache.cayenne.tutorial.persistent.Employees" dbEntityName="employees">
+		<obj-attribute name="birthDate" type="java.time.LocalDate" db-attribute-path="birth_date"/>
+		<obj-attribute name="firstName" type="java.lang.String" db-attribute-path="first_name"/>
+		<obj-attribute name="gender" type="java.lang.String" db-attribute-path="gender"/>
+		<obj-attribute name="hireDate" type="java.time.LocalDate" db-attribute-path="hire_date"/>
+		<obj-attribute name="lastName" type="java.lang.String" db-attribute-path="last_name"/>
+	</obj-entity>
+	<obj-entity name="Salaries" className="org.apache.cayenne.tutorial.persistent.Salaries" dbEntityName="salaries">
+		<obj-attribute name="salary" type="int" db-attribute-path="salary"/>
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<obj-entity name="Titles" className="org.apache.cayenne.tutorial.persistent.Titles" dbEntityName="titles">
+		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	</obj-entity>
+	<db-relationship name="deptEmps" source="departments" target="dept_emp" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="dept_no" target="dept_no"/>
+	</db-relationship>
+	<db-relationship name="deptManagers" source="departments" target="dept_manager" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="dept_no" target="dept_no"/>
+	</db-relationship>
+	<db-relationship name="departments" source="dept_emp" target="departments">
+		<db-attribute-pair source="dept_no" target="dept_no"/>
+	</db-relationship>
+	<db-relationship name="employees" source="dept_emp" target="employees">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="departments" source="dept_manager" target="departments">
+		<db-attribute-pair source="dept_no" target="dept_no"/>
+	</db-relationship>
+	<db-relationship name="employees" source="dept_manager" target="employees">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="deptEmps" source="employees" target="dept_emp" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="deptManagers" source="employees" target="dept_manager" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="salarieses" source="employees" target="salaries" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="titleses" source="employees" target="titles" toDependentPK="true" toMany="true">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="employees" source="salaries" target="employees">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<db-relationship name="employees" source="titles" target="employees">
+		<db-attribute-pair source="emp_no" target="emp_no"/>
+	</db-relationship>
+	<obj-relationship name="deptEmps" source="Departments" target="DeptEmp" deleteRule="Deny" db-relationship-path="deptEmps"/>
+	<obj-relationship name="deptManagers" source="Departments" target="DeptManager" deleteRule="Deny" db-relationship-path="deptManagers"/>
+	<obj-relationship name="departments" source="DeptEmp" target="Departments" deleteRule="Nullify" db-relationship-path="departments"/>
+	<obj-relationship name="employees" source="DeptEmp" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
+	<obj-relationship name="departments" source="DeptManager" target="Departments" deleteRule="Nullify" db-relationship-path="departments"/>
+	<obj-relationship name="employees" source="DeptManager" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
+	<obj-relationship name="deptEmps" source="Employees" target="DeptEmp" deleteRule="Deny" db-relationship-path="deptEmps"/>
+	<obj-relationship name="deptManagers" source="Employees" target="DeptManager" deleteRule="Deny" db-relationship-path="deptManagers"/>
+	<obj-relationship name="salarieses" source="Employees" target="Salaries" deleteRule="Deny" db-relationship-path="salarieses"/>
+	<obj-relationship name="titleses" source="Employees" target="Titles" deleteRule="Deny" db-relationship-path="titleses"/>
+	<obj-relationship name="employees" source="Salaries" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
+	<obj-relationship name="employees" source="Titles" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
+</data-map>

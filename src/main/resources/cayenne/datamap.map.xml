@@ -3,137 +3,217 @@
 	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	 xsi:schemaLocation="http://cayenne.apache.org/schema/10/modelMap https://cayenne.apache.org/schema/10/modelMap.xsd"
 	 project-version="10">
-	<property name="defaultPackage" value="org.apache.cayenne.tutorial.persistent"/>
-	<property name="defaultCatalog" value="employees"/>
-	<db-entity name="current_dept_emp" catalog="employees">
-		<db-attribute name="dept_no" type="CHAR" isMandatory="true" length="4"/>
-		<db-attribute name="emp_no" type="INTEGER" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" length="10"/>
-		<db-attribute name="to_date" type="DATE" length="10"/>
+	<property name="defaultPackage" value="org.locoad.db.entities"/>
+	<property name="defaultCatalog" value="locoad"/>
+	<db-entity name="action" catalog="locoad">
+		<db-attribute name="action_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="action_name" type="VARCHAR" length="45"/>
 	</db-entity>
-	<db-entity name="departments" catalog="employees">
-		<db-attribute name="dept_name" type="VARCHAR" isMandatory="true" length="40"/>
-		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
+	<db-entity name="action_permission" catalog="locoad">
+		<db-attribute name="action_id" type="INTEGER" length="10"/>
+		<db-attribute name="ff_id" type="INTEGER" length="10"/>
+		<db-attribute name="form_id" type="INTEGER" length="10"/>
+		<db-attribute name="in_status_id" type="INTEGER" length="10"/>
+		<db-attribute name="permission_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="restrict_ou" type="INTEGER" length="10"/>
+		<db-attribute name="to_role_id" type="INTEGER" length="10"/>
 	</db-entity>
-	<db-entity name="dept_emp" catalog="employees">
-		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
-		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" isMandatory="true" length="10"/>
-		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	<db-entity name="dbrole" catalog="locoad">
+		<db-attribute name="ff_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="role_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="role_name" type="VARCHAR" isMandatory="true" length="255"/>
 	</db-entity>
-	<db-entity name="dept_emp_latest_date" catalog="employees">
-		<db-attribute name="emp_no" type="INTEGER" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" length="10"/>
-		<db-attribute name="to_date" type="DATE" length="10"/>
+	<db-entity name="dbstatus" catalog="locoad">
+		<db-attribute name="ff_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="status_description" type="VARCHAR" length="255"/>
+		<db-attribute name="status_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="status_name" type="INTEGER" length="10"/>
+		<db-attribute name="status_roleid" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="dept_manager" catalog="employees">
-		<db-attribute name="dept_no" type="CHAR" isPrimaryKey="true" isMandatory="true" length="4"/>
-		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" isMandatory="true" length="10"/>
-		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	<db-entity name="form" catalog="locoad">
+		<db-attribute name="ff_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="form_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="form_name" type="VARCHAR" length="255"/>
 	</db-entity>
-	<db-entity name="employees" catalog="employees">
-		<db-attribute name="birth_date" type="DATE" isMandatory="true" length="10"/>
-		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="first_name" type="VARCHAR" isMandatory="true" length="14"/>
-		<db-attribute name="gender" type="CHAR" isMandatory="true" length="1"/>
-		<db-attribute name="hire_date" type="DATE" isMandatory="true" length="10"/>
-		<db-attribute name="last_name" type="VARCHAR" isMandatory="true" length="16"/>
+	<db-entity name="formfield" catalog="locoad">
+		<db-attribute name="ff_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="field_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="field_name" type="VARCHAR" length="255"/>
+		<db-attribute name="field_type" type="VARCHAR" length="255"/>
+		<db-attribute name="form_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="input_type" type="VARCHAR" length="255"/>
 	</db-entity>
-	<db-entity name="salaries" catalog="employees">
-		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="salary" type="INTEGER" isMandatory="true" length="10"/>
-		<db-attribute name="to_date" type="DATE" isMandatory="true" length="10"/>
+	<db-entity name="formflow" catalog="locoad">
+		<db-attribute name="ff_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="user_id" type="INTEGER" isMandatory="true" length="10"/>
 	</db-entity>
-	<db-entity name="titles" catalog="employees">
-		<db-attribute name="emp_no" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="from_date" type="DATE" isPrimaryKey="true" isMandatory="true" length="10"/>
-		<db-attribute name="title" type="VARCHAR" isPrimaryKey="true" isMandatory="true" length="50"/>
-		<db-attribute name="to_date" type="DATE" length="10"/>
+	<db-entity name="state_transition" catalog="locoad">
+		<db-attribute name="allowed_role_id" type="INTEGER" length="10"/>
+		<db-attribute name="ff_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="form_id" type="INTEGER" isMandatory="true" length="10"/>
+		<db-attribute name="from_status_id" type="INTEGER" length="10"/>
+		<db-attribute name="restrict_ou" type="BIT" length="1"/>
+		<db-attribute name="to_status_id" type="INTEGER" length="10"/>
+		<db-attribute name="transition_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
 	</db-entity>
-	<obj-entity name="CurrentDeptEmp" className="org.apache.cayenne.tutorial.persistent.CurrentDeptEmp" dbEntityName="current_dept_emp">
-		<obj-attribute name="deptNo" type="java.lang.String" db-attribute-path="dept_no"/>
-		<obj-attribute name="empNo" type="int" db-attribute-path="emp_no"/>
-		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<db-entity name="user" catalog="locoad">
+		<db-attribute name="create_time" type="TIMESTAMP" length="19"/>
+		<db-attribute name="email" type="VARCHAR" isMandatory="true" length="255"/>
+		<db-attribute name="password" type="VARCHAR" length="255"/>
+		<db-attribute name="user_id" type="INTEGER" isPrimaryKey="true" isGenerated="true" isMandatory="true" length="10"/>
+		<db-attribute name="user_name" type="VARCHAR" length="255"/>
+	</db-entity>
+	<obj-entity name="Action" className="org.locoad.db.entities.Action" dbEntityName="action">
+		<obj-attribute name="actionName" type="java.lang.String" db-attribute-path="action_name"/>
 	</obj-entity>
-	<obj-entity name="Departments" className="org.apache.cayenne.tutorial.persistent.Departments" dbEntityName="departments">
-		<obj-attribute name="deptName" type="java.lang.String" db-attribute-path="dept_name"/>
+	<obj-entity name="ActionPermission" className="org.locoad.db.entities.ActionPermission" dbEntityName="action_permission">
+		<obj-attribute name="inStatusId" type="int" db-attribute-path="in_status_id"/>
+		<obj-attribute name="restrictOu" type="int" db-attribute-path="restrict_ou"/>
+		<obj-attribute name="toRoleId" type="int" db-attribute-path="to_role_id"/>
 	</obj-entity>
-	<obj-entity name="DeptEmp" className="org.apache.cayenne.tutorial.persistent.DeptEmp" dbEntityName="dept_emp">
-		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<obj-entity name="Dbrole" className="org.locoad.db.entities.Dbrole" dbEntityName="dbrole">
+		<obj-attribute name="roleName" type="java.lang.String" db-attribute-path="role_name"/>
 	</obj-entity>
-	<obj-entity name="DeptEmpLatestDate" className="org.apache.cayenne.tutorial.persistent.DeptEmpLatestDate" dbEntityName="dept_emp_latest_date">
-		<obj-attribute name="empNo" type="int" db-attribute-path="emp_no"/>
-		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<obj-entity name="Dbstatus" className="org.locoad.db.entities.Dbstatus" dbEntityName="dbstatus">
+		<obj-attribute name="statusDescription" type="java.lang.String" db-attribute-path="status_description"/>
+		<obj-attribute name="statusName" type="int" db-attribute-path="status_name"/>
 	</obj-entity>
-	<obj-entity name="DeptManager" className="org.apache.cayenne.tutorial.persistent.DeptManager" dbEntityName="dept_manager">
-		<obj-attribute name="fromDate" type="java.time.LocalDate" db-attribute-path="from_date"/>
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<obj-entity name="Form" className="org.locoad.db.entities.Form" dbEntityName="form">
+		<obj-attribute name="formName" type="java.lang.String" db-attribute-path="form_name"/>
 	</obj-entity>
-	<obj-entity name="Employees" className="org.apache.cayenne.tutorial.persistent.Employees" dbEntityName="employees">
-		<obj-attribute name="birthDate" type="java.time.LocalDate" db-attribute-path="birth_date"/>
-		<obj-attribute name="firstName" type="java.lang.String" db-attribute-path="first_name"/>
-		<obj-attribute name="gender" type="java.lang.String" db-attribute-path="gender"/>
-		<obj-attribute name="hireDate" type="java.time.LocalDate" db-attribute-path="hire_date"/>
-		<obj-attribute name="lastName" type="java.lang.String" db-attribute-path="last_name"/>
+	<obj-entity name="Formfield" className="org.locoad.db.entities.Formfield" dbEntityName="formfield">
+		<obj-attribute name="fieldName" type="java.lang.String" db-attribute-path="field_name"/>
+		<obj-attribute name="fieldType" type="java.lang.String" db-attribute-path="field_type"/>
+		<obj-attribute name="inputType" type="java.lang.String" db-attribute-path="input_type"/>
 	</obj-entity>
-	<obj-entity name="Salaries" className="org.apache.cayenne.tutorial.persistent.Salaries" dbEntityName="salaries">
-		<obj-attribute name="salary" type="int" db-attribute-path="salary"/>
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<obj-entity name="Formflow" className="org.locoad.db.entities.Formflow" dbEntityName="formflow"/>
+	<obj-entity name="StateTransition" className="org.locoad.db.entities.StateTransition" dbEntityName="state_transition">
+		<obj-attribute name="restrictOu" type="boolean" db-attribute-path="restrict_ou"/>
 	</obj-entity>
-	<obj-entity name="Titles" className="org.apache.cayenne.tutorial.persistent.Titles" dbEntityName="titles">
-		<obj-attribute name="toDate" type="java.time.LocalDate" db-attribute-path="to_date"/>
+	<obj-entity name="User" className="org.locoad.db.entities.User" dbEntityName="user">
+		<obj-attribute name="createTime" type="java.time.LocalDateTime" db-attribute-path="create_time"/>
+		<obj-attribute name="email" type="java.lang.String" db-attribute-path="email"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="password"/>
+		<obj-attribute name="userName" type="java.lang.String" db-attribute-path="user_name"/>
 	</obj-entity>
-	<db-relationship name="deptEmps" source="departments" target="dept_emp" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="dept_no" target="dept_no"/>
+	<db-relationship name="actionPermissions" source="action" target="action_permission" toMany="true">
+		<db-attribute-pair source="action_id" target="action_id"/>
 	</db-relationship>
-	<db-relationship name="deptManagers" source="departments" target="dept_manager" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="dept_no" target="dept_no"/>
+	<db-relationship name="action" source="action_permission" target="action">
+		<db-attribute-pair source="action_id" target="action_id"/>
 	</db-relationship>
-	<db-relationship name="departments" source="dept_emp" target="departments">
-		<db-attribute-pair source="dept_no" target="dept_no"/>
+	<db-relationship name="ff" source="action_permission" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
 	</db-relationship>
-	<db-relationship name="employees" source="dept_emp" target="employees">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="form" source="action_permission" target="form">
+		<db-attribute-pair source="form_id" target="form_id"/>
 	</db-relationship>
-	<db-relationship name="departments" source="dept_manager" target="departments">
-		<db-attribute-pair source="dept_no" target="dept_no"/>
+	<db-relationship name="dbstatuses" source="dbrole" target="dbstatus" toMany="true">
+		<db-attribute-pair source="role_id" target="status_roleid"/>
 	</db-relationship>
-	<db-relationship name="employees" source="dept_manager" target="employees">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="ff" source="dbrole" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
 	</db-relationship>
-	<db-relationship name="deptEmps" source="employees" target="dept_emp" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="stateTransitions" source="dbrole" target="state_transition" toMany="true">
+		<db-attribute-pair source="role_id" target="allowed_role_id"/>
 	</db-relationship>
-	<db-relationship name="deptManagers" source="employees" target="dept_manager" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="ff" source="dbstatus" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
 	</db-relationship>
-	<db-relationship name="salarieses" source="employees" target="salaries" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="stateTransitions" source="dbstatus" target="state_transition" toMany="true">
+		<db-attribute-pair source="status_id" target="from_status_id"/>
 	</db-relationship>
-	<db-relationship name="titleses" source="employees" target="titles" toDependentPK="true" toMany="true">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="stateTransitions1" source="dbstatus" target="state_transition" toMany="true">
+		<db-attribute-pair source="status_id" target="to_status_id"/>
 	</db-relationship>
-	<db-relationship name="employees" source="salaries" target="employees">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="statusRole" source="dbstatus" target="dbrole">
+		<db-attribute-pair source="status_roleid" target="role_id"/>
 	</db-relationship>
-	<db-relationship name="employees" source="titles" target="employees">
-		<db-attribute-pair source="emp_no" target="emp_no"/>
+	<db-relationship name="actionPermissions" source="form" target="action_permission" toMany="true">
+		<db-attribute-pair source="form_id" target="form_id"/>
 	</db-relationship>
-	<obj-relationship name="deptEmps" source="Departments" target="DeptEmp" deleteRule="Deny" db-relationship-path="deptEmps"/>
-	<obj-relationship name="deptManagers" source="Departments" target="DeptManager" deleteRule="Deny" db-relationship-path="deptManagers"/>
-	<obj-relationship name="departments" source="DeptEmp" target="Departments" deleteRule="Nullify" db-relationship-path="departments"/>
-	<obj-relationship name="employees" source="DeptEmp" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
-	<obj-relationship name="departments" source="DeptManager" target="Departments" deleteRule="Nullify" db-relationship-path="departments"/>
-	<obj-relationship name="employees" source="DeptManager" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
-	<obj-relationship name="deptEmps" source="Employees" target="DeptEmp" deleteRule="Deny" db-relationship-path="deptEmps"/>
-	<obj-relationship name="deptManagers" source="Employees" target="DeptManager" deleteRule="Deny" db-relationship-path="deptManagers"/>
-	<obj-relationship name="salarieses" source="Employees" target="Salaries" deleteRule="Deny" db-relationship-path="salarieses"/>
-	<obj-relationship name="titleses" source="Employees" target="Titles" deleteRule="Deny" db-relationship-path="titleses"/>
-	<obj-relationship name="employees" source="Salaries" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
-	<obj-relationship name="employees" source="Titles" target="Employees" deleteRule="Nullify" db-relationship-path="employees"/>
+	<db-relationship name="ff" source="form" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="formfields" source="form" target="formfield" toMany="true">
+		<db-attribute-pair source="form_id" target="form_id"/>
+	</db-relationship>
+	<db-relationship name="stateTransitions" source="form" target="state_transition" toMany="true">
+		<db-attribute-pair source="form_id" target="form_id"/>
+	</db-relationship>
+	<db-relationship name="ff" source="formfield" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="form" source="formfield" target="form">
+		<db-attribute-pair source="form_id" target="form_id"/>
+	</db-relationship>
+	<db-relationship name="actionPermissions" source="formflow" target="action_permission" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="dbroles" source="formflow" target="dbrole" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="dbstatuses" source="formflow" target="dbstatus" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="formfields" source="formflow" target="formfield" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="forms" source="formflow" target="form" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="stateTransitions" source="formflow" target="state_transition" toMany="true">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="user" source="formflow" target="user">
+		<db-attribute-pair source="user_id" target="user_id"/>
+	</db-relationship>
+	<db-relationship name="allowedRole" source="state_transition" target="dbrole">
+		<db-attribute-pair source="allowed_role_id" target="role_id"/>
+	</db-relationship>
+	<db-relationship name="ff" source="state_transition" target="formflow">
+		<db-attribute-pair source="ff_id" target="ff_id"/>
+	</db-relationship>
+	<db-relationship name="form" source="state_transition" target="form">
+		<db-attribute-pair source="form_id" target="form_id"/>
+	</db-relationship>
+	<db-relationship name="fromStatus" source="state_transition" target="dbstatus">
+		<db-attribute-pair source="from_status_id" target="status_id"/>
+	</db-relationship>
+	<db-relationship name="toStatus" source="state_transition" target="dbstatus">
+		<db-attribute-pair source="to_status_id" target="status_id"/>
+	</db-relationship>
+	<db-relationship name="formflows" source="user" target="formflow" toMany="true">
+		<db-attribute-pair source="user_id" target="user_id"/>
+	</db-relationship>
+	<obj-relationship name="actionPermissions" source="Action" target="ActionPermission" deleteRule="Deny" db-relationship-path="actionPermissions"/>
+	<obj-relationship name="action" source="ActionPermission" target="Action" deleteRule="Nullify" db-relationship-path="action"/>
+	<obj-relationship name="ff" source="ActionPermission" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="form" source="ActionPermission" target="Form" deleteRule="Nullify" db-relationship-path="form"/>
+	<obj-relationship name="dbstatuses" source="Dbrole" target="Dbstatus" deleteRule="Deny" db-relationship-path="dbstatuses"/>
+	<obj-relationship name="ff" source="Dbrole" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="stateTransitions" source="Dbrole" target="StateTransition" deleteRule="Deny" db-relationship-path="stateTransitions"/>
+	<obj-relationship name="ff" source="Dbstatus" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="stateTransitions" source="Dbstatus" target="StateTransition" deleteRule="Deny" db-relationship-path="stateTransitions"/>
+	<obj-relationship name="stateTransitions1" source="Dbstatus" target="StateTransition" deleteRule="Deny" db-relationship-path="stateTransitions1"/>
+	<obj-relationship name="statusRole" source="Dbstatus" target="Dbrole" deleteRule="Nullify" db-relationship-path="statusRole"/>
+	<obj-relationship name="actionPermissions" source="Form" target="ActionPermission" deleteRule="Deny" db-relationship-path="actionPermissions"/>
+	<obj-relationship name="ff" source="Form" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="formfields" source="Form" target="Formfield" deleteRule="Deny" db-relationship-path="formfields"/>
+	<obj-relationship name="stateTransitions" source="Form" target="StateTransition" deleteRule="Deny" db-relationship-path="stateTransitions"/>
+	<obj-relationship name="ff" source="Formfield" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="form" source="Formfield" target="Form" deleteRule="Nullify" db-relationship-path="form"/>
+	<obj-relationship name="actionPermissions" source="Formflow" target="ActionPermission" deleteRule="Deny" db-relationship-path="actionPermissions"/>
+	<obj-relationship name="dbroles" source="Formflow" target="Dbrole" deleteRule="Deny" db-relationship-path="dbroles"/>
+	<obj-relationship name="dbstatuses" source="Formflow" target="Dbstatus" deleteRule="Deny" db-relationship-path="dbstatuses"/>
+	<obj-relationship name="formfields" source="Formflow" target="Formfield" deleteRule="Deny" db-relationship-path="formfields"/>
+	<obj-relationship name="forms" source="Formflow" target="Form" deleteRule="Deny" db-relationship-path="forms"/>
+	<obj-relationship name="stateTransitions" source="Formflow" target="StateTransition" deleteRule="Deny" db-relationship-path="stateTransitions"/>
+	<obj-relationship name="user" source="Formflow" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<obj-relationship name="allowedRole" source="StateTransition" target="Dbrole" deleteRule="Nullify" db-relationship-path="allowedRole"/>
+	<obj-relationship name="ff" source="StateTransition" target="Formflow" deleteRule="Nullify" db-relationship-path="ff"/>
+	<obj-relationship name="form" source="StateTransition" target="Form" deleteRule="Nullify" db-relationship-path="form"/>
+	<obj-relationship name="fromStatus" source="StateTransition" target="Dbstatus" deleteRule="Nullify" db-relationship-path="fromStatus"/>
+	<obj-relationship name="toStatus" source="StateTransition" target="Dbstatus" deleteRule="Nullify" db-relationship-path="toStatus"/>
+	<obj-relationship name="formflows" source="User" target="Formflow" deleteRule="Deny" db-relationship-path="formflows"/>
 </data-map>
